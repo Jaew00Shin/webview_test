@@ -1,0 +1,29 @@
+targets:
+  $default:
+    builders:
+      freezed:
+        generate_for:
+          include:
+            - "lib/src/domain/models/requests/**"
+            - "lib/src/presentation/pages/**/cubits/**_cubit.dart"
+        options:
+          map: false
+          when: false
+      functional_widget:
+        generate_for:
+          include:
+            - "lib/src/presentation/pages/**/**_view.dart"
+      go_router_builder:
+        generate_for:
+          include:
+            - "lib/src/presentation/pages/**/**_page.dart"
+      injectable_generator:injectable_builder:
+        generate_for:
+          include:
+            - "lib/src/application/config/**"
+            - "lib/src/domain/use_cases/**/**_use_case.dart"
+            - "lib/src/infrastructure/repositories/**"
+            - "lib/src/presentation/blocs/**"
+            - "lib/src/pages/**/cubits/**_cubit.dart"
+
+
