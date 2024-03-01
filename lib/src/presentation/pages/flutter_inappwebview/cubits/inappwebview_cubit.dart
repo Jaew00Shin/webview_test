@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:webview_test/src/domain/models/models.dart';
 import 'package:webview_test/src/domain/use_cases/use_cases.dart';
+import 'package:webview_test/src/utils/utils.dart';
 
 part 'inappwebview_state.dart';
 part 'inappwebview_cubit.freezed.dart';
@@ -10,20 +11,25 @@ part 'inappwebview_cubit.freezed.dart';
 @injectable
 class InAppWebViewCubit extends Cubit<InAppWebViewState> {
   InAppWebViewCubit({
-    @factoryParam required InAppWebViewState initialState,
     required SetDpCookieUseCase setDpCookieUseCase,
+    @factoryParam InAppWebViewState? initialState,
   })  : _setDpCookieUseCase = setDpCookieUseCase,
-        super(initialState);
+        super(
+          initialState ?? InAppWebViewState(currentUrl: getDpWebUrl().toUri()),
+        );
 
   final SetDpCookieUseCase _setDpCookieUseCase;
 
-  @PostConstruct(preResolve: true)
-  Future<void> init() async {
-    await _setDpCookieUseCase(
-      SetWebViewCookieRequest(
-        url: state.currentUrl,
-        key: 'x-dealsplus-tg',
-        value: 'A',
+  Future<void> onCookieInitialized() async {}
+
+  void onCurrentUrlChanged({
+    required Uri url,
+    required bool canGoBack,
+  }) {
+    emit(
+      state.copyWith(
+        currentUrl: url,
+        canGoBack: canGoBack,
       ),
     );
   }

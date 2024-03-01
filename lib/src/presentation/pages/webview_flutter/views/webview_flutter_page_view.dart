@@ -4,7 +4,6 @@ import 'package:functional_widget_annotation/functional_widget_annotation.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_test/src/presentation/hooks/hooks.dart';
 import 'package:webview_test/src/presentation/pages/pages.dart';
-import 'package:webview_test/src/utils/extensions/string_extension.dart';
 import 'package:webview_test/src/utils/utils.dart';
 
 part 'webview_flutter_page_view.g.dart';
@@ -29,14 +28,18 @@ Widget __body(BuildContext context) {
 
   final controller = useMemoized(
     () {
-      return WebViewController()..loadRequest(url.toUri());
+      final webViewController = WebViewController();
+      if (url != null) {
+        webViewController.loadRequest(url);
+      }
+      return webViewController;
     },
     [url],
   );
 
   final onNavigationDelegate = useCallback(
     (NavigationRequest request) async {
-      if (url.isDealsplus && !request.url.isDealsplus) {
+      if (url != null && url.isDealsplus && !request.url.isDealsplus) {
         await WebViewFlutterPage(url: Uri.encodeComponent(request.url))
             .push<void>(context);
         return NavigationDecision.prevent;

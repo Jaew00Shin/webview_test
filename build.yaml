@@ -5,6 +5,8 @@ targets:
         generate_for:
           include:
             - "lib/src/domain/models/requests/**"
+            - "lib/src/infrastructure/entities/**"
+            - "lib/src/presentation/blocs/**/**_cubit.dart"
             - "lib/src/presentation/pages/**/cubits/**_cubit.dart"
         options:
           map: false
@@ -24,6 +26,6 @@ targets:
             - "lib/src/domain/use_cases/**/**_use_case.dart"
             - "lib/src/infrastructure/repositories/**"
             - "lib/src/presentation/blocs/**"
-            - "lib/src/pages/**/cubits/**_cubit.dart"
+            - "lib/src/presentation/pages/**/cubits/**_cubit.dart"
 
 

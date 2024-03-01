@@ -4,4 +4,6 @@ extension StringX on String {
   Uri toUri() => Uri.parse(this);
 
   bool get isDealsplus => toUri().isDealsplus;
+
+  int toInt() => int.parse(this);
 }

@@ -1,2 +1,2 @@
+export 'dealsplus.dart';
 export 'device.dart';
-export 'url.dart';

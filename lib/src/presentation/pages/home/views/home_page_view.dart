@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:functional_widget_annotation/functional_widget_annotation.dart';
 import 'package:gap/gap.dart';
-import 'package:webview_test/src/presentation/pages/flutter_inappwebview/flutter_inappwebview_page.dart';
 import 'package:webview_test/src/presentation/pages/pages.dart';
-import 'package:webview_test/src/utils/functions/url.dart';
+import 'package:webview_test/src/utils/functions/functions.dart';
 
 part 'home_page_view.g.dart';
 

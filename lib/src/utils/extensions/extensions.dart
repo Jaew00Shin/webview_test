@@ -1,1 +1,2 @@
-export 'uri_extension.dart';
+export 'string.dart';
+export 'uri.dart';
